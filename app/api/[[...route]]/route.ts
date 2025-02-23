@@ -3,6 +3,7 @@ import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
 import { zValidator } from '@hono/zod-validator'
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
+import accounts from "./accounts"
 
 
 
@@ -15,6 +16,11 @@ app.get("/hello", (c)=>{
         message: "Hello world"
     })
 })
+
+const routes= app
+    .route("/accounts", accounts);
+
+export type AppType= typeof routes;
 
 
 // app.route('/authors', authors)
